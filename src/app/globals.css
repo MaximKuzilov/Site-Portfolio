@@ -1,0 +1,184 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+/* Expensive cursor graphics are desktop-only. This CSS gate also prevents a
+   flash of the canvas before React has hydrated on touch devices. */
+.particle-cursor,
+.glitch-canvas {
+  display: none;
+}
+
+.glitch-mobile {
+  z-index: 20;
+  inset: 12px -4px;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 300ms ease;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 7px,
+      rgba(255, 255, 255, 0.08) 8px,
+      transparent 9px 14px
+    ),
+    linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.1) 48%, transparent 72%);
+}
+
+.glitch-mobile::before,
+.glitch-mobile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 13%,
+    rgba(255, 255, 255, 0.12) 13% 15%,
+    transparent 15% 31%
+  );
+  animation: mobile-glitch-shift 1.15s steps(2, end) infinite;
+}
+
+.glitch-mobile::after {
+  opacity: 0.25;
+  animation-duration: 1.7s;
+  animation-direction: reverse;
+}
+
+.glitch-mobile--active {
+  opacity: 1;
+}
+
+@keyframes mobile-glitch-shift {
+  0%, 82%, 100% { transform: translate3d(0, 0, 0); clip-path: inset(0); }
+  86% { transform: translate3d(-5px, 1px, 0); clip-path: inset(12% 0 58% 0); }
+  91% { transform: translate3d(6px, -1px, 0); clip-path: inset(62% 0 12% 0); }
+  96% { transform: translate3d(-2px, 0, 0); clip-path: inset(38% 0 35% 0); }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .particle-cursor,
+  .glitch-canvas {
+    display: block;
+  }
+
+  .glitch-mobile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-mobile::before,
+  .glitch-mobile::after,
+  .not-found-glitch,
+  .not-found-glitch::before,
+  .not-found-glitch::after {
+    animation: none !important;
+  }
+}
+
+/* Lenis Recommended Styles */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@keyframes not-found-glitch {
+  0%, 90%, 100% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+  92% {
+    transform: translate(-3px, 1px);
+    text-shadow: 3px 0 rgba(255, 255, 255, 0.8), -3px 0 rgba(255, 255, 255, 0.4);
+  }
+  94% {
+    transform: translate(3px, -1px);
+    text-shadow: -2px 0 rgba(255, 255, 255, 0.6), 2px 0 rgba(255, 255, 255, 0.3);
+  }
+  96% {
+    transform: translate(-1px, 2px);
+    text-shadow: 1px 0 rgba(255, 255, 255, 0.5);
+  }
+}
+
+.not-found-glitch {
+  position: relative;
+  animation: not-found-glitch 4s infinite;
+}
+
+.not-found-glitch::before,
+.not-found-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  clip-path: inset(0 0 0 0);
+}
+
+.not-found-glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 rgba(255, 255, 255, 0.45);
+  animation: not-found-glitch-before 3s infinite linear alternate-reverse;
+}
+
+.not-found-glitch::after {
+  left: -2px;
+  text-shadow: 2px 0 rgba(255, 255, 255, 0.25);
+  animation: not-found-glitch-after 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes not-found-glitch-before {
+  0%, 88%, 100% { clip-path: inset(40% 0 40% 0); transform: translate(0); }
+  90% { clip-path: inset(10% 0 60% 0); transform: translate(-4px); }
+  93% { clip-path: inset(55% 0 15% 0); transform: translate(4px); }
+  96% { clip-path: inset(25% 0 45% 0); transform: translate(-2px); }
+}
+
+@keyframes not-found-glitch-after {
+  0%, 85%, 100% { clip-path: inset(60% 0 20% 0); transform: translate(0); }
+  87% { clip-path: inset(20% 0 50% 0); transform: translate(3px); }
+  91% { clip-path: inset(45% 0 30% 0); transform: translate(-3px); }
+  95% { clip-path: inset(5% 0 70% 0); transform: translate(2px); }
+}

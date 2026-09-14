@@ -1,0 +1,29 @@
+---
+title: "Truck Tracker Pro"
+description: "A desktop application for real-time freight monitoring. Route visualization, vehicle tracking, distance and travel time calculation."
+role: "Desktop Software Developer"
+stack: "Python, PyQt6, JSON, QPainter"
+year: "2026"
+category: "Десктоп программирование"
+images:
+  - "/works/truck-tracker-1.png"
+download: "/works/truck-tracker.exe"
+---
+
+# Truck Tracker Pro
+
+Truck Tracker Pro is a desktop application for monitoring and simulating freight transportation. It allows users to set a route, specify vehicle parameters, and observe the cargo movement along the route in real time.
+
+## Features
+
+* **Route Configuration** — input origin, destination, distance, and speed
+* **Real-Time Monitoring** — animated cargo visualization between cities showing distance traveled, remaining distance, and estimated time of arrival
+* **Multiple Waypoints** — ability to add intermediate route points
+* **Control Panel** — displays vehicle registration number, cargo name, current speed, and actual mileage
+* **Data Persistence** — routes and parameters stored in JSON format
+
+## Technical Implementation
+
+* Interface built with **PyQt6** and custom rendering via QPainter — route visualization, vehicle movement animation, graphic elements
+* QTimer-based simulation for real-time movement
+* Modular architecture separating routing logic from UI
