@@ -169,12 +169,14 @@ export default function WorkDetailClient({
                 {images.length > 1 && (
                   <>
                     <button
+                      aria-label={lang === "ru" ? "Предыдущее изображение" : "Previous image"}
                       onClick={prevImage}
                       className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-black/80 border border-white/20 text-white/70 hover:text-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
                     >
                       <ChevronLeft size={20} />
                     </button>
                     <button
+                      aria-label={lang === "ru" ? "Следующее изображение" : "Next image"}
                       onClick={nextImage}
                       className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-black/60 hover:bg-black/80 border border-white/20 text-white/70 hover:text-white transition-all opacity-100 md:opacity-0 md:group-hover:opacity-100 cursor-pointer"
                     >
@@ -190,6 +192,8 @@ export default function WorkDetailClient({
                   {images.map((_, idx) => (
                     <button
                       key={idx}
+                      aria-label={`${lang === "ru" ? "Изображение" : "Image"} ${idx + 1}`}
+                      aria-current={idx === currentImage ? "true" : undefined}
                       onClick={() => setCurrentImage(idx)}
                       className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${
                         idx === currentImage ? "bg-white" : "bg-white/30 hover:bg-white/50"

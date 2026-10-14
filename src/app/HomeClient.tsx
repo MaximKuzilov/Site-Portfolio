@@ -6,7 +6,7 @@ import WorkCard from "@/components/WorkCard";
 import { useLang } from "@/components/LangContext";
 
 export default function HomeClient() {
-  const { t } = useLang();
+  const { t, lang } = useLang();
 
   const lineVariants: Variants = {
     hidden: { y: "100%", opacity: 0 },
@@ -26,6 +26,9 @@ export default function HomeClient() {
   ];
 
   const workPreviews = [
+    { slug: "pan-asia", fallback: "01", previewImage: "/works/kwork/pan-asia-1.webp", title: lang === "ru" ? "«Пан-Азия» — сайт кафе" : "Pan-Asia — café website" },
+    { slug: "rai-vologda", fallback: "02", previewImage: "/works/kwork/rai-vologda-1.webp", title: lang === "ru" ? "«Рай» — сайт заведения" : "Rai — venue website" },
+    { slug: "vkdispatch", fallback: "03", previewImage: "/works/kwork/vkdispatch-1.webp", title: "VKDispatch" },
     { slug: "virtus-planner", fallback: "01", previewImage: "/works/virtus-planner-1.jpg" },
     { slug: "biosviaz-seo", fallback: "02", previewImage: "/works/biosviaz-1.png" },
     { slug: "vyruchay", fallback: "03", previewImage: "/works/vyruchay-1.png" },
@@ -124,7 +127,7 @@ export default function HomeClient() {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <WorkCard
-              title={t.workTitles[work.slug] || work.slug}
+              title={work.title || t.workTitles[work.slug] || work.slug}
               slug={work.slug}
               imageFallback={work.fallback}
               previewImage={work.previewImage}
