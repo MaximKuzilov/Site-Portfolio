@@ -21,7 +21,7 @@ export default function JsonLd() {
     sameAs: [
       KWORK_URL,
       "https://www.fl.ru/users/maksimkuzilov/",
-      "https://t.me/XGr0YeP",
+      "https://t.me/MKInteractive",
       GOOGLE_DRIVE_URL,
     ],
   };

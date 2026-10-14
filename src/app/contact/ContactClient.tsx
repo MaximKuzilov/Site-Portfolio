@@ -16,8 +16,8 @@ export default function ContactClient() {
     },
     {
       label: "Telegram",
-      value: "@XGr0YeP",
-      href: "https://t.me/XGr0YeP",
+      value: "@MKInteractive",
+      href: "https://t.me/MKInteractive",
       icon: Send,
     },
     {
